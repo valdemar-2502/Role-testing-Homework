@@ -1,0 +1,15 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Check Vector binary
+      stat:
+        path: /usr/local/bin/vector
+      register: vector_binary
+
+    - name: Assert Vector binary exists
+      assert:
+        that: vector_binary.stat.exists
+        success_msg: "Vector binary exists"
+        fail_msg: "Vector binary not found"

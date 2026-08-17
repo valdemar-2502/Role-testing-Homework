@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+  options:
+    ignore-errors: true
+driver:
+  name: docker
+platforms:
+  - name: oraclelinux8
+    image: oraclelinux:8
+    pre_build_image: true
+    privileged: true
+    command: /sbin/init
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      roles_path: /home/kadancev-v/Working-with-roles-Homework/roles
+      ansible_python_interpreter: /usr/bin/python3
+verifier:
+  name: ansible
